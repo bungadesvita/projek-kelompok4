@@ -1,11 +1,210 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!doctype html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GitHub Profile — Rahmad Athariq</title>
+  <meta name="description" content="Halaman profil GitHub personal yang sederhana dan responsif." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#98a0b3; --accent:#6ee7b7;
+      --glass: rgba(255,255,255,0.03);
+      --maxw:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#061024 0%, #071428 60%);color:#e6eef6}
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:28px}
+
+    header{display:flex;gap:20px;align-items:center}
+    .avatar{width:120px;height:120px;border-radius:18px;overflow:hidden;flex:0 0 120px;border:2px solid rgba(255,255,255,0.06);background:linear-gradient(135deg,#152236,#0f1724);display:flex;align-items:center;justify-content:center}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .who h1{margin:0;font-size:28px;letter-spacing:-0.4px}
+    .who p{margin:6px 0;color:var(--muted)}
+    .badges{display:flex;gap:8px;margin-top:10px}
+    .badge{padding:6px 10px;border-radius:999px;background:var(--glass);font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+
+    main{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:22px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .bio{line-height:1.6;color:#d6e3f3}
+
+    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:12px}
+    .proj{padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+    .proj h3{margin:0 0 6px 0;font-size:16px}
+    .proj p{margin:0;color:var(--muted);font-size:13px}
+    .proj a{display:inline-block;margin-top:10px;text-decoration:none;font-weight:600}
+
+    aside .stats{display:flex;gap:10px;flex-wrap:wrap}
+    .stat{flex:1 1 120px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));text-align:center}
+    .stat strong{display:block;font-size:20px}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .skill{padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02);font-size:13px}
+
+    footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:880px){
+      main{grid-template-columns:1fr}
+      aside{order:2}
+    }
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);text-decoration:none}
+    .link{color:var(--accent);text-decoration:none}
+    .center{display:flex;align-items:center;gap:8px}
+  </style>
 </head>
 <body>
-    
+  <div class="wrap">
+    <header>
+      <div class="avatar">
+        <!-- ganti src dengan foto profil GitHub Anda -->
+        <img id="avatarImg" src="" alt="Rahmad Athariq" />
+      </div>
+      <div class="who">
+        <h1 id="name">Rahmad Athariq</h1>
+        <p id="bioline" class="muted">mahasiswa D3 sistem informasi — suka ngoding.</p>
+        <div class="badges">
+          <div class="badge" id="location">Indonesia</div>
+          <div class="badge" id="role">Frontend • Backend</div>
+          <div class="badge" id="website"><a id="websiteLink" class="link" href="#" target="_blank">website</a></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card">
+          <h2>Tentang Saya</h2>
+          <p class="bio" id="about">Halo!. Saya mahasiswa D3 sistem informasi.</p>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h2>Proyek Terbaru</h2>
+            <div class="muted">Menampilkan repositori publik</div>
+          </div>
+          <div id="projects" class="projects" aria-live="polite">
+            <!-- repos akan dimuat di sini -->
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3>Statistik</h3>
+          <div class="stats" id="stats">
+            <div class="stat"><span class="muted">Repos</span><strong id="stat-repos">0</strong></div>
+            <div class="stat"><span class="muted">Followers</span><strong id="stat-followers">0</strong></div>
+            <div class="stat"><span class="muted">Following</span><strong id="stat-following">0</strong></div>
+          </div>
+
+          <h3 style="margin-top:12px">Keahlian</h3>
+          <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">React</div>
+            <div class="skill">Node.js</div>
+          </div>
+
+          <h3 style="margin-top:12px">Kontak</h3>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <a class="btn" id="githubBtn" href="#" target="_blank">Lihat GitHub</a>
+            <a class="btn" id="emailBtn" href="mailto:email@example.com">Email</a>
+            <a class="btn" id="linkedinBtn" href="#" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Pengaturan Cepat</h3>
+          <div style="display:flex;gap:8px;flex-direction:column">
+            <label class="muted">GitHub username</label>
+            <input id="gh-username" placeholder="contoh: rahmadathariq" style="padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+            <button id="loadBtn" class="btn">Muat profil</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="muted">Template sederhana untuk GitHub Pages • Edit sesuka hati</div>
+    </footer>
+  </div>
+
+  <script>
+    // Ubah nilai default username di sini (atau gunakan input di kanan)
+    const DEFAULT_USERNAME = '';
+
+    const nameEl = document.getElementById('name');
+    const bioEl = document.getElementById('bioline');
+    const aboutEl = document.getElementById('about');
+    const avatarImg = document.getElementById('avatarImg');
+    const projectsEl = document.getElementById('projects');
+    const statRepos = document.getElementById('stat-repos');
+    const statFollowers = document.getElementById('stat-followers');
+    const statFollowing = document.getElementById('stat-following');
+    const githubBtn = document.getElementById('githubBtn');
+    const websiteLink = document.getElementById('websiteLink');
+
+    async function loadProfile(username){
+      if(!username) return alert('Masukkan username GitHub.');
+      try{
+        const res = await fetch(`https://api.github.com/users/${username}`);
+        if(!res.ok) throw new Error('User tidak ditemukan');
+        const data = await res.json();
+        // update UI
+        nameEl.textContent = data.name || data.login;
+        bioEl.textContent = data.bio || '—';
+        aboutEl.textContent = data.bio || 'Tidak ada bio tersedia.';
+        avatarImg.src = data.avatar_url + '&s=400';
+        statRepos.textContent = data.public_repos;
+        statFollowers.textContent = data.followers;
+        statFollowing.textContent = data.following;
+        githubBtn.href = data.html_url;
+        websiteLink.href = data.blog || '#';
+        document.getElementById('location').textContent = data.location || '—';
+        // load repos
+        loadRepos(username);
+      }catch(err){
+        alert('Gagal memuat profil: ' + err.message);
+      }
+    }
+
+    async function loadRepos(username){
+      projectsEl.innerHTML = '<div class="muted">Memuat repositori…</div>';
+      try{
+        const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=12&sort=updated`);
+        if(!res.ok) throw new Error('Repos tidak bisa dimuat');
+        const repos = await res.json();
+        projectsEl.innerHTML = '';
+        if(repos.length === 0) projectsEl.innerHTML = '<div class="muted">Tidak ada repositori publik.</div>';
+        repos.forEach(r => {
+          const el = document.createElement('div'); el.className = 'proj';
+          el.innerHTML = `<h3>${escapeHtml(r.name)}</h3><p class="muted">${escapeHtml(r.description || '')}</p><div style=\"margin-top:8px;display:flex;justify-content:space-between;align-items:center\"><a href=\"${r.html_url}\" target=\"_blank\">Lihat</a><span class=\"muted\">${r.stargazers_count} ★ • ${r.language || '-'} </span></div>`;
+          projectsEl.appendChild(el);
+        })
+      }catch(err){
+        projectsEl.innerHTML = '<div class="muted">Gagal memuat repositori.</div>';
+        console.error(err);
+      }
+    }
+
+    function escapeHtml(s){
+      return String(s||'').replace(/[&<>\"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;','\'':'&#39;' }[c]));
+    }
+
+    document.getElementById('loadBtn').addEventListener('click', ()=>{
+      const u = document.getElementById('gh-username').value.trim();
+      loadProfile(u);
+    });
+
+    // auto-load default if provided
+    if(DEFAULT_USERNAME) {
+      document.getElementById('gh-username').value = DEFAULT_USERNAME;
+      loadProfile(DEFAULT_USERNAME);
+    }
+  </script>
 </body>
 </html>
